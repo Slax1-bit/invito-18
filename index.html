@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invito 18°</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --neon-primary: #80ffc0;
+    --neon-secondary: #40ff80;
+    --neon-glow: #a0ffd0;
+    --accent-color: #ff80c0;
+  }
+  
+  body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:100vh;
+    background:#000;
+    font-family:Inter, sans-serif;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* === SFONDO COSMICO DINAMICO MIGLIORATO === */
+  .cosmic-bg{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    overflow:hidden;
+    background: 
+      radial-gradient(circle at 20% 20%, #0a0f0a 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, #0f1a15 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, #151a0f 0%, transparent 50%),
+      radial-gradient(circle at 60% 30%, #1a0f15 0%, transparent 50%),
+      linear-gradient(135deg, #000000 0%, #0a150a 30%, #151f0f 70%, #050a05 100%);
+    animation: cosmicPulse 15s ease-in-out infinite;
+  }
+
+  @keyframes cosmicPulse{
+    0%,100%{ 
+      filter: hue-rotate(0deg) brightness(0.95) contrast(1.1); 
+      transform: scale(1); 
+    }
+    33%{ 
+      filter: hue-rotate(5deg) brightness(1.02) contrast(1.15); 
+      transform: scale(1.01) rotate(0.2deg); 
+    }
+    66%{ 
+      filter: hue-rotate(-3deg) brightness(0.98) contrast(1.12); 
+      transform: scale(1.005) rotate(-0.1deg); 
+    }
+  }
+
+  /* === VORTICI MIGLIORATI === */
+  .vortex{
+    position:fixed;
+    inset:-50%;
+    z-index:-3;
+    pointer-events:none;
+    background: 
+      conic-gradient(from 0deg at 50% 50%, 
+        transparent 0%, 
+        rgba(80,255,150,0.08) 10%,
+        transparent 20%,
+        rgba(100,255,180,0.12) 30%,
+        rgba(255,128,192,0.08) 35%,
+        transparent 40%,
+        rgba(120,255,200,0.08) 50%,
+        transparent 60%,
+        rgba(80,255,150,0.06) 70%,
+        rgba(255,128,192,0.05) 75%,
+        transparent 80%,
+        rgba(100,255,180,0.1) 90%,
+        transparent 100%);
+    animation: vortexSpin 30s linear infinite;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+  }
+
+  .vortex-2{
+    animation: vortexSpin 25s linear infinite reverse;
+    opacity: 0.4;
+    filter: hue-rotate(60deg);
+  }
+
+  .vortex-3{
+    animation: vortexSpin 40s linear infinite;
+    opacity: 0.3;
+    filter: hue-rotate(120deg) blur(1px);
+    background: 
+      conic-gradient(from 180deg at 50% 50%, 
+        transparent 0%, 
+        rgba(255,128,192,0.05) 15%,
+        transparent 30%,
+        rgba(100,255,180,0.08) 45%,
+        transparent 60%,
+        rgba(80,255,150,0.06) 75%,
+        transparent 90%);
+  }
+
+  @keyframes vortexSpin{
+    0%{ transform: rotate(0deg) scale(1.6); }
+    100%{ transform: rotate(360deg) scale(1.6); }
+  }
+
+  /* === NEBBIE MIGLIORATE === */
+  .nebula-1, .nebula-2, .nebula-3, .nebula-4{
+    position:fixed;
+    inset:-30%;
+    pointer-events:none;
+    z-index:-2;
+    mix-blend-mode: soft-light;
+    filter: blur(25px);
+    opacity: 0.5;
+  }
+
+  .nebula-1{
+    background: radial-gradient(circle at 30% 40%, rgba(100,255,180,0.25) 0%, transparent 60%);
+    animation: nebulaFloat 25s ease-in-out infinite alternate;
+  }
+
+  .nebula-2{
+    background: radial-gradient(circle at 70% 20%, rgba(80,220,150,0.2) 0%, transparent 70%);
+    animation: nebulaFloat 30s ease-in-out infinite alternate-reverse;
+  }
+
+  .nebula-3{
+    background: radial-gradient(circle at 50% 80%, rgba(120,255,200,0.15) 0%, transparent 65%);
+    animation: nebulaFloat 35s ease-in-out infinite alternate;
+  }
+
+  .nebula-4{
+    background: radial-gradient(circle at 80% 60%, rgba(90,240,160,0.2) 0%, transparent 55%);
+    animation: nebulaFloat 28s ease-in-out infinite alternate-reverse;
+  }
+
+  .nebula-5 {
+    position:fixed;
+    inset:-30%;
+    pointer-events:none;
+    z-index:-2;
+    mix-blend-mode: overlay;
+    filter: blur(30px);
+    opacity: 0.3;
+    background: radial-gradient(circle at 40% 60%, rgba(255,128,192,0.15) 0%, transparent 70%);
+    animation: nebulaFloat 32s ease-in-out infinite alternate;
+  }
+
+  @keyframes nebulaFloat{
+    0%{ transform: translateX(-15%) translateY(-10%) scale(1); }
+    33%{ transform: translateX(10%) translateY(15%) scale(1.1); }
+    66%{ transform: translateX(-5%) translateY(5%) scale(1.05); }
+    100%{ transform: translateX(-10%) translateY(-5%) scale(1.08); }
+  }
+
+  /* === PARTICELLE STELLARI MIGLIORATE === */
+  .starfield{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  .star{
+    position:absolute;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(160,255,192,0.8) 0%, transparent 70%);
+    animation: starTwinkle 4s ease-in-out infinite alternate;
+  }
+
+  .star.large {
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(160,255,192,0.7) 30%, transparent 70%);
+    filter: drop-shadow(0 0 4px rgba(160,255,192,0.8));
+  }
+
+  @keyframes starTwinkle{
+    0%{ opacity: 0.3; transform: scale(0.9); }
+    50%{ opacity: 1; transform: scale(1.2); }
+    100%{ opacity: 0.8; transform: scale(1.1); }
+  }
+
+  /* === POLVERE COSMICA MIGLIORATA === */
+  .cosmic-dust{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .dust-particle{
+    position:absolute;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(128,255,176,0.6) 0%, rgba(64,160,112,0.3) 50%, transparent 100%);
+    opacity:0;
+    filter: blur(0.8px);
+    animation: cosmicDrift linear infinite;
+  }
+
+  .dust-particle.sparkle {
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(160,255,192,0.6) 50%, transparent 100%);
+    animation: cosmicDriftSparkle linear infinite;
+  }
+
+  @keyframes cosmicDrift{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:0; }
+    20%{ opacity:0.4; }
+    80%{ opacity:0.3; }
+    100%{ transform: translateY(120vh) translateX(80px) rotate(360deg); opacity:0; }
+  }
+
+  @keyframes cosmicDriftSparkle{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.8); opacity:0; }
+    20%{ opacity:0.6; transform: scale(1.2); }
+    40%{ opacity:0.4; transform: scale(0.9); }
+    60%{ opacity:0.7; transform: scale(1.1); }
+    80%{ opacity:0.3; transform: scale(0.8); }
+    100%{ transform: translateY(120vh) translateX(-80px) rotate(-360deg) scale(0.7); opacity:0; }
+  }
+
+  /* === CARD INVITO CON LED BORDER MIGLIORATO === */
+  .wrapper{
+    position:relative;
+    width: 90vw;
+    height: calc(90vw * 1.5);
+    max-width: 360px;
+    max-height: 540px;
+    border-radius:20px;
+    overflow:hidden;
+    background: rgba(12,22,16,0.85);
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(100,255,180,0.1);
+    box-shadow:
+      inset 0 0 20px rgba(255,255,255,0.05),
+      0 0 60px rgba(100,255,180,0.1);
+    animation: 
+      hologramAppear 2.5s cubic-bezier(0.25,1,0.5,1) forwards,
+      gentlePulse 8s ease-in-out infinite 4s,
+      hologramDistortion 12s ease-in-out infinite 6s;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) scale(0.9);
+  }
+
+  @keyframes hologramAppear{
+    0%{ opacity:0; transform:translate(-50%, -50%) scale(0.9) rotateX(10deg); }
+    70%{ transform:translate(-50%, -50%) scale(1.02) rotateX(-2deg); }
+    100%{ opacity:1; transform:translate(-50%, -50%) scale(1) rotateX(0deg); }
+  }
+
+  @keyframes gentlePulse{
+    0%, 100%{ transform: translate(-50%, -50%) scale(1); }
+    50%{ transform: translate(-50%, -50%) scale(1.008); }
+  }
+
+  @keyframes hologramDistortion{
+    0%, 70%, 100% { filter: blur(0px); }
+    75% { filter: blur(1px); }
+    80% { filter: blur(0px); }
+    85% { filter: blur(0.5px); }
+  }
+
+  /* === EFFETTO LED BORDER MIGLIORATO === */
+  .led-border{
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    padding:2px;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      #80ffc0 0%,
+      #40ff80 12.5%,
+      #80ffc0 25%,
+      #ff80c0 37.5%,
+      #80ffc0 50%,
+      #40ff80 62.5%,
+      #80ffc0 75%,
+      #ff80c0 87.5%,
+      #80ffc0 100%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    animation: ledRotate 3s linear infinite;
+    opacity:0;
+    animation: 
+      ledAppear 1.5s ease-out forwards 2.5s,
+      ledRotate 3s linear infinite 4s,
+      ledPulse 4s ease-in-out infinite 5s;
+  }
+
+  @keyframes ledAppear{
+    0%{ opacity:0; transform: scale(1.1); filter: brightness(0.5); }
+    100%{ opacity:1; transform: scale(1); filter: brightness(1); }
+  }
+
+  @keyframes ledRotate{
+    0%{ filter: hue-rotate(0deg) brightness(1); }
+    50%{ filter: hue-rotate(180deg) brightness(1.2); }
+    100%{ filter: hue-rotate(360deg) brightness(1); }
+  }
+
+  @keyframes ledPulse{
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Punti LED che scorrono - MIGLIORATI */
+  .led-runner{
+    position:absolute;
+    width:60px;
+    height:3px;
+    background: linear-gradient(90deg, transparent, #80ffc0, #40ff80, #ff80c0, #80ffc0, transparent);
+    border-radius:2px;
+    filter: drop-shadow(0 0 6px #80ffc0) drop-shadow(0 0 12px #40ff80);
+    animation: ledRun 4s linear infinite;
+    opacity:0;
+    animation-delay: 4s;
+  }
+
+  .led-runner.vertical {
+    width: 3px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, #80ffc0, #40ff80, #ff80c0, #80ffc0, transparent);
+    animation: ledRunVertical 4s linear infinite;
+    animation-delay: 5s;
+  }
+
+  @keyframes ledRun{
+    0%{ 
+      top: -2px;
+      left: -60px;
+      opacity:0;
+    }
+    5%{
+      opacity:1;
+    }
+    25%{ 
+      top: -2px;
+      left: 100%;
+      opacity:1;
+    }
+    26%{
+      top: -2px;
+      left: 100%;
+      opacity:0;
+    }
+    27%{
+      top: auto;
+      bottom: -2px;
+      left: 100%;
+      opacity:0;
+    }
+    28%{
+      opacity:1;
+    }
+    50%{ 
+      top: auto;
+      bottom: -2px;
+      left: -60px;
+      opacity:1;
+    }
+    51%{
+      opacity:0;
+    }
+    100%{
+      opacity:0;
+    }
+  }
+
+  @keyframes ledRunVertical{
+    0%{ 
+      top: -60px;
+      left: -2px;
+      opacity:0;
+    }
+    5%{
+      opacity:1;
+    }
+    25%{ 
+      top: 100%;
+      left: -2px;
+      opacity:1;
+    }
+    26%{
+      top: 100%;
+      left: -2px;
+      opacity:0;
+    }
+    27%{
+      top: 100%;
+      left: auto;
+      right: -2px;
+      opacity:0;
+    }
+    28%{
+      opacity:1;
+    }
+    50%{ 
+      top: -60px;
+      left: auto;
+      right: -2px;
+      opacity:1;
+    }
+    51%{
+      opacity:0;
+    }
+    100%{
+      opacity:0;
+    }
+  }
+
+  /* === TITOLO MIGLIORATO === */
+  .title{
+    position:absolute;
+    top:20px;
+    width:100%;
+    text-align:center;
+    font-family:Cinzel;
+    font-size: clamp(24px, 6vw, 32px);
+    color:#e8ffe8;
+    text-shadow:0 0 12px rgba(128,255,192,0.6);
+    opacity:1;
+    animation: 
+      titleDisappear 1.2s ease forwards 3.2s,
+      titleGlitch 0.3s steps(2) infinite 2.8s;
+    z-index:2;
+    letter-spacing: 1px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  @keyframes titleDisappear{
+    0%{ opacity:1; transform:translateY(0); }
+    100%{ opacity:0; transform:translateY(-15px); }
+  }
+
+  @keyframes titleGlitch{
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  /* === IMMAGINE INVITO MIGLIORATA === */
+  .invite-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .invite{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    animation: 
+      hologramReveal 3.5s ease-out forwards 3s,
+      invitePulse 6s ease-in-out infinite 6.5s;
+    transform-origin: center center;
+    border-radius:18px;
+    filter: brightness(1.05) contrast(1.1);
+  }
+
+  .hologram-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(125deg, rgba(128,255,192,0.1) 0%, transparent 20%, transparent 80%, rgba(128,255,192,0.1) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(128,255,192,0.03) 2px, rgba(128,255,192,0.03) 4px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    border-radius: 18px;
+    animation: scanlines 8s linear infinite;
+  }
+
+  @keyframes hologramReveal{
+    0%{ opacity:0; transform:scale(1.05) rotateY(10deg); filter: blur(3px) brightness(0.8); }
+    70%{ transform:scale(0.99) rotateY(-2deg); }
+    100%{ opacity:1; transform:scale(1) rotateY(0deg); filter: blur(0px) brightness(1.05); }
+  }
+
+  @keyframes invitePulse{
+    0%, 100%{ transform: scale(1); }
+    50%{ transform: scale(1.006); }
+  }
+
+  @keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+  }
+
+  /* === EFFETTO RIFLESSO === */
+  .reflection {
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, rgba(128,255,192,0.3) 0%, transparent 70%);
+    filter: blur(5px);
+    opacity: 0.5;
+    animation: reflectionPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes reflectionPulse {
+    0%, 100% { opacity: 0.3; transform: scaleX(1); }
+    50% { opacity: 0.6; transform: scaleX(1.1); }
+  }
+
+  /* === MEDIA QUERIES PER MOBILE === */
+  @media (max-width: 480px) {
+    .wrapper {
+      width: 85vw;
+      height: calc(85vw * 1.5);
+      border-radius: 16px;
+    }
+    
+    .led-border {
+      border-radius: 16px;
+    }
+    
+    .invite-container, .invite {
+      border-radius: 14px;
+    }
+    
+    .title {
+      font-size: clamp(20px, 7vw, 28px);
+    }
+  }
+
+  @media (max-width: 320px) {
+    .wrapper {
+      width: 90vw;
+      height: calc(90vw * 1.5);
+    }
+    
+    .title {
+      font-size: 18px;
+    }
+  }
+
+  /* === EFFETTI INTERATTIVI PER MOBILE === */
+  .wrapper:active {
+    animation: 
+      hologramAppear 2.5s cubic-bezier(0.25,1,0.5,1) forwards,
+      gentlePulse 4s ease-in-out infinite 4s,
+      hologramDistortion 8s ease-in-out infinite 6s,
+      cardTap 0.3s ease forwards;
+  }
+
+  @keyframes cardTap {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(0.98); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- SFONDI MIGLIORATI -->
+<div class="cosmic-bg"></div>
+<div class="vortex"></div>
+<div class="vortex vortex-2"></div>
+<div class="vortex vortex-3"></div>
+<div class="nebula-1"></div>
+<div class="nebula-2"></div>
+<div class="nebula-3"></div>
+<div class="nebula-4"></div>
+<div class="nebula-5"></div>
+<div class="starfield" id="starfield"></div>
+<div class="cosmic-dust" id="cosmicDust"></div>
+
+<!-- CARD INVITO CON LED BORDER MIGLIORATO -->
+<div class="wrapper">
+  <div class="led-border"></div>
+  <div class="led-runner"></div>
+  <div class="led-runner vertical"></div>
+  <div class="title">Invito 18° Salvo</div>
+  <div class="invite-container">
+    <img src="invito_18.png" class="invite" alt="invito">
+    <div class="hologram-overlay"></div>
+  </div>
+  <div class="reflection"></div>
+</div>
+
+<script>
+  // CREA CAMPO STELLARE MIGLIORATO
+  const starfield = document.getElementById('starfield');
+  // Riduciamo il numero di stelle su dispositivi mobili per migliorare le prestazioni
+  const starCount = window.innerWidth < 768 ? 120 : 200;
+  
+  for(let i=0;i<starCount;i++){
+    const star = document.createElement('div');
+    star.className = Math.random() > 0.8 ? 'star large' : 'star';
+    star.style.left = Math.random()*100 + 'vw';
+    star.style.top = Math.random()*100 + 'vh';
+    star.style.width = (1 + Math.random()*3) + 'px';
+    star.style.height = star.style.width;
+    star.style.animationDelay = Math.random()*6 + 's';
+    star.style.animationDuration = (2 + Math.random()*6) + 's';
+    starfield.appendChild(star);
+  }
+
+  // CREA POLVERE COSMICA MIGLIORATA
+  const cosmicDust = document.getElementById('cosmicDust');
+  // Riduciamo il numero di particelle su dispositivi mobili
+  const dustCount = window.innerWidth < 768 ? 80 : 120;
+  
+  for(let i=0;i<dustCount;i++){
+    const dust = document.createElement('div');
+    dust.className = Math.random() > 0.7 ? 'dust-particle sparkle' : 'dust-particle';
+    dust.style.left = Math.random()*100 + 'vw';
+    dust.style.width = (2 + Math.random()*5) + 'px';
+    dust.style.height = dust.style.width;
+    dust.style.animationDuration = (10 + Math.random()*20) + 's';
+    dust.style.animationDelay = Math.random()*15 + 's';
+    dust.style.opacity = 0.2 + Math.random()*0.5;
+    cosmicDust.appendChild(dust);
+  }
+
+  // EFFETTO INTERATTIVO PER MOBILE E DESKTOP
+  const wrapper = document.querySelector('.wrapper');
+  
+  // Aggiungi effetto al tocco/click
+  wrapper.addEventListener('click', function() {
+    this.style.animation = 'cardTap 0.3s ease forwards';
+    setTimeout(() => {
+      this.style.animation = '';
+    }, 300);
+  });
+
+  // Gestione ridimensionamento finestra
+  window.addEventListener('resize', function() {
+    // Centra di nuovo la card dopo il ridimensionamento
+    wrapper.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+
+  // Ottimizzazione per dispositivi mobili
+  if (window.innerWidth < 768) {
+    // Disabilita alcune animazioni su dispositivi mobili per migliorare le prestazioni
+    document.querySelectorAll('.nebula-1, .nebula-2, .nebula-3, .nebula-4, .nebula-5').forEach(el => {
+      el.style.animationDuration = '40s';
+    });
+    
+    document.querySelectorAll('.vortex').forEach(el => {
+      el.style.animationDuration = '60s';
+    });
+  }
+</script>
+
+</body>
+</html>
