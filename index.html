@@ -221,7 +221,7 @@
     100%{ transform: translateY(120vh) translateX(-80px) rotate(-360deg) scale(0.7); opacity:0; }
   }
 
-  /* === CARD INVITO CON LED BORDER MIGLIORATO === */
+  /* === CARD INVITO CON LED BORDER TEMPORANEO === */
   .wrapper{
     position:relative;
     width: 90vw;
@@ -263,7 +263,7 @@
     85% { filter: blur(0.5px); }
   }
 
-  /* === EFFETTO LED BORDER MIGLIORATO === */
+  /* === EFFETTO LED BORDER TEMPORANEO === */
   .led-border{
     position:absolute;
     inset:0;
@@ -285,12 +285,11 @@
     mask-composite: xor;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    animation: ledRotate 3s linear infinite;
     opacity:0;
+    /* LED appare solo durante l'animazione iniziale e poi scompare */
     animation: 
       ledAppear 1.5s ease-out forwards 2.5s,
-      ledRotate 3s linear infinite 4s,
-      ledPulse 4s ease-in-out infinite 5s;
+      ledDisappear 0.8s ease-in forwards 4s;
   }
 
   @keyframes ledAppear{
@@ -298,18 +297,12 @@
     100%{ opacity:1; transform: scale(1); filter: brightness(1); }
   }
 
-  @keyframes ledRotate{
-    0%{ filter: hue-rotate(0deg) brightness(1); }
-    50%{ filter: hue-rotate(180deg) brightness(1.2); }
-    100%{ filter: hue-rotate(360deg) brightness(1); }
+  @keyframes ledDisappear{
+    0%{ opacity:1; }
+    100%{ opacity:0; }
   }
 
-  @keyframes ledPulse{
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-  }
-
-  /* Punti LED che scorrono - MIGLIORATI */
+  /* Punti LED che scorrono - SOLO DURANTE ANIMAZIONE INIZIALE */
   .led-runner{
     position:absolute;
     width:60px;
@@ -317,17 +310,19 @@
     background: linear-gradient(90deg, transparent, #80ffc0, #40ff80, #ff80c0, #80ffc0, transparent);
     border-radius:2px;
     filter: drop-shadow(0 0 6px #80ffc0) drop-shadow(0 0 12px #40ff80);
-    animation: ledRun 4s linear infinite;
+    animation: ledRun 4s linear;
     opacity:0;
     animation-delay: 4s;
+    animation-fill-mode: forwards;
   }
 
   .led-runner.vertical {
     width: 3px;
     height: 60px;
     background: linear-gradient(180deg, transparent, #80ffc0, #40ff80, #ff80c0, #80ffc0, transparent);
-    animation: ledRunVertical 4s linear infinite;
+    animation: ledRunVertical 4s linear;
     animation-delay: 5s;
+    animation-fill-mode: forwards;
   }
 
   @keyframes ledRun{
@@ -582,7 +577,7 @@
 <div class="starfield" id="starfield"></div>
 <div class="cosmic-dust" id="cosmicDust"></div>
 
-<!-- CARD INVITO CON LED BORDER MIGLIORATO -->
+<!-- CARD INVITO CON LED BORDER TEMPORANEO -->
 <div class="wrapper">
   <div class="led-border"></div>
   <div class="led-runner"></div>
